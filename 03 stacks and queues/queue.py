@@ -17,7 +17,7 @@ class QueueNode:
     self.prev = None
 
 class Queue:
-  def __init__(self, items: List[T]):
+  def __init__(self, items: List[T] = []):
     self.head = None
     self.tail = None
     self.length = len(items)

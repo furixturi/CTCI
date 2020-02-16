@@ -18,6 +18,8 @@ class BinarySearchTree(Tree):
       print_str += BinarySearchTree.__repr__(self.right_child, (level + 1))
     return print_str
 
+  # best case O(logN)
+  # worst case O(N)
   def insert(self, data):
     child = BinarySearchTree(data)
     n = self
@@ -39,6 +41,8 @@ class BinarySearchTree(Tree):
       else:
         raise ValueError(f'{data} is already in the BST. No duplicate data is allowed.')
 
+  # best case O(logN)
+  # worst case O(N)
   def search(self, data) -> BinarySearchTree:
     curr = self
     while True:
@@ -58,12 +62,16 @@ class BinarySearchTree(Tree):
           break
     return curr
 
+  # best case O(logN)
+  # worst case O(N)
   def search_min(self) -> BinarySearchTree:
     curr = self
     while curr.left_child != None:
       curr = curr.left_child
     return curr
     
+  # best case O(logN)
+  # worst case O(N)
   def delete(self, data):
     n = self.search(data)
     if n == None:
@@ -87,7 +95,7 @@ class BinarySearchTree(Tree):
           next_bigger.parent.right_child = None
         else:
           next_bigger.parent.left_child = None
-
+  # O(N)
   def dfs_in_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -98,6 +106,7 @@ class BinarySearchTree(Tree):
       # right_child might be None
       BinarySearchTree.dfs_in_order(right_child, traverse_function)
   
+  # O(N)
   def dfs_pre_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -106,6 +115,7 @@ class BinarySearchTree(Tree):
       BinarySearchTree.dfs_pre_order(left_child, traverse_function)
       BinarySearchTree.dfs_pre_order(right_child, traverse_function)
   
+  # O(N)
   def dfs_post_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -114,6 +124,7 @@ class BinarySearchTree(Tree):
       BinarySearchTree.dfs_post_order(right_child, traverse_function)
       traverse_function(self)
 
+  # O(N)
   def bfs(self, traverse_function):
     queue: List = [self]
     while len(queue) > 0:

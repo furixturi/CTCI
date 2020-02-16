@@ -44,7 +44,7 @@ class Queue:
     items_str = ' -> '.join(items)
     return f'Queue: {items_str}'
 
-  def add(self, item: T):
+  def enqueue(self, item: T):
     n = QueueNode(item)
     if self.length == 0:
       self.head = n
@@ -55,7 +55,7 @@ class Queue:
       self.tail = n
     self.length += 1
 
-  def remove(self) -> T:
+  def dequeue(self) -> T:
     if self.length == 0:
       raise IndexError('Queue is empty, nothing to remove.')
     data = self.head.data
@@ -80,9 +80,9 @@ if __name__ == '__main__':
   q = Queue([1,9,8,3,0,4,2,1])
   print(q.is_empty())
   print(q)
-  q.add('wow')
+  q.enqueue('wow')
   print(q)
-  print(q.remove())
+  print(q.dequeue())
   print(q)
   print(q.peek())
   

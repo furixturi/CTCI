@@ -27,7 +27,7 @@ class BinaryTree:
   def insert(self, data, values = None):
     if values != None:
       values.update(self.values)
-    if data in values:
+    if values != None and data in values:
       raise ValueError('{data} already exists.')
     if self.left != None and self.right != None:
       r = random.randrange(2)

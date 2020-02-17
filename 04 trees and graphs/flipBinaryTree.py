@@ -1,4 +1,4 @@
-from binaryTree import BinaryTree, printBinaryTree
+from ds.binaryTree import BinaryTree, printBinaryTree
 
 # pre-order can be used to flip a tree
 def flipBinaryTree(t: BinaryTree):

@@ -87,6 +87,27 @@ class AVLTree:
       return 0
     return self.get_height(node.left) - self.get_height(node.right)
 
+  def search(self, data, node = None, is_root = True):
+    if is_root:
+      node = self
+    curr = node
+    if curr == None:
+      raise ValueError(f'{data} does not exist in tree.')
+    if data == node.data:
+      curr = node 
+    elif data < node.data:
+      curr = self.search(data, node.left, False)
+    else:
+      curr = self.search(data, node.right, False)
+    return curr
+
+  def search_min(self, start = None, is_root = True):
+    if is_root:
+      start = self
+    curr = start
+    if curr.left != None:
+      curr = self.search_min(curr.left, False)
+    return curr
 
 if __name__ == '__main__':
   tree = AVLTree(5)
@@ -98,3 +119,6 @@ if __name__ == '__main__':
   tree.insert(10)
   tree.insert(13)
   print(tree)
+  result = tree.search(12)
+  print(result)
+  print(tree.right.search_min())

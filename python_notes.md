@@ -70,3 +70,61 @@ class MyClass:
     return str(data)
 ```
 
+# Infinity constant
+
+## Positive
+
+```python
+import math
+p_inf = math.inf # same as p_inf = float("+inf"), a tiny bit faster
+p_inf > 9999999999999999999 # True
+math.isinf(p_inf) and p_inf > 0 # True same as p_inf == float("+inf")
+```
+
+## Negative
+```python
+import math
+n_inf = -math.inf
+math.isinf(n_inf) # Also True
+math.isinf(n_inf) and n_inf < 0 # Right way to check negative inf
+```
+
+# Use min() max() on iterable
+
+min() returns the min value by default.
+key= arg can receive a custom comparison function(lambda)
+
+## List, tuple
+
+```python
+strs = ['hi', 'this', 'is', 'a', 'veryverylongword']
+longestWord = max(strs, key = lambda x: len(x))
+shortestWord = min(strs, key = lambda x: len(x))
+# to get the index, use index(min(strs, ...))
+```
+
+## Dict
+
+Strategy: Turn it to a list first
+
+```python
+myDict = {
+  'a': 21,
+  'b': 42,
+  'c': 65536,
+  'd': 65536
+}
+
+# the first key value pair with the max value
+maxKeyValuePair = max(myDict.items(), key = lambda x: x[1]) # ('c', 65536)
+keyOfMaxValue = maxKeyValuePair[0]
+maxValue maxKeyValuePair[1]
+```
+
+# Dict
+
+## Find key by value
+
+```python
+keys = [key for key, val in myDict.items() if val == 65536] # ['c', 'd']
+```

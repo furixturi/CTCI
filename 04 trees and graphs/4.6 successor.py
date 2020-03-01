@@ -11,14 +11,20 @@ def findMin(tree):
 
 def findNext(tree):
   curr = tree
-  if curr == curr.parent.left:
-    if curr.right is not None:
-      nextNode = findMin(curr.right)
-    else:
-      nextNode = curr.parent
+  if curr.right is not None:
+    nextNode = findMin(curr.right)
   else:
-    if curr.right is not None:
-      nextNode = findMin(curr.right)
-    else:
+    if curr.parent is None:
       nextNode = None
+    else:
+      if curr == curr.parent.left:
+        nextNode = curr.parent
+      else:
+        nextNode = None
+        curr = curr.parent
+        while curr.parent is not None:
+          curr = curr.parent
+          if curr == curr.parent.left:
+            nextNode = curr.parent
+            break
   return nextNode

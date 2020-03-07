@@ -128,3 +128,46 @@ maxValue maxKeyValuePair[1]
 ```python
 keys = [key for key, val in myDict.items() if val == 65536] # ['c', 'd']
 ```
+
+# Check if key in dict
+
+```python
+if key in theDict:
+```
+
+# Check index exists list
+
+```python
+if i < len(theList):
+```
+
+# Get item index in list
+
+```python
+if item in theList:
+  index = theList.index(item)
+```
+
+# randomly choose an item
+
+## from a list
+
+```python
+import random
+randomItem = random.choice(aList) # returns the value
+```
+
+## from a dict
+
+```python
+import random
+randomKey = random.choice(list(aDict))
+randomValue = aDict[randomKey]
+```
+
+## from a set
+
+```python
+import random
+randomItem = random.choice(tuple(aSet)) # returns the set item
+```

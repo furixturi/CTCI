@@ -171,3 +171,58 @@ randomValue = aDict[randomKey]
 import random
 randomItem = random.choice(tuple(aSet)) # returns the set item
 ```
+
+# Initiate list with * quirk
+
+If you wrote:
+
+```python
+grid = [[True] * 5] * 3
+```
+
+Every element in the outer list is a reference to the same inner list.
+After the first time an inner list is built, the `*` in the
+following executions doesn't reevaluate the `[True] * 5` expression and
+built new inner lists, but simply makes new references to the same first
+inner list. 
+
+If the first item is immutable (a value or a tuple), `*` will makes a
+new copy of the value/object. But since a list is mutable, here it
+creates a new reference to the same list object.
+
+Essentially it is the same as:
+
+```python
+inner = [True] * 5
+inner1 = inner
+inner2 = inner
+grid = [inner, inner1, inner2]
+```
+When manipulating inner list item, no matter with the reference `inner`,
+`inner1` or `inner2`, you are manipulating the same inner list.
+Which results in:
+
+```python
+grid[0][4] = False
+# Probably intended result: 
+# [[True, True, True, True, False],
+# [True, True, True, True, True],
+# [[True, True, True, True, True]]
+#
+# Actual result: 
+# [[True, True, True, True, False],
+# [True, True, True, True, False],
+# [[True, True, True, True, False]]
+```
+
+## Workaround: 
+Build the outer list with list comprehension.
+List comprehension reevaluates the expression every loop
+
+```python
+grid = [[True] * 5 for _ in range(3)]
+grid[0][4] = False
+# [[True, True, True, True, False],
+# [True, True, True, True, True],
+# [[True, True, True, True, True]]
+```

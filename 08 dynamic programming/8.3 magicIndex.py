@@ -3,7 +3,6 @@
 # write a method to find a magic index, if one exists, in array A.
 # FOLLOW UP
 # What if the values are not distinct?
-import math
 def findMagicIndex(list, start = None, end = None):
   if not list:
     return None

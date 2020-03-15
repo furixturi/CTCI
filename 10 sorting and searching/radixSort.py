@@ -1,8 +1,7 @@
 # Time: O(kn) k - max number of digits
 
 def calcNumDigits(n):
-  if n == 0:
-    return 1
+  if n == 0: return 1
   d = 0
   while n >= 1:
     d += 1
@@ -12,7 +11,7 @@ def calcNumDigits(n):
 def getDigitAt(n, d):
   return n // (10**d) % 10
 
-def sortByDigit(nums, d):
+def sortByD(nums, d):
   dMap = [[] for _ in range(10)]
   for n in nums:
     digit = getDigitAt(n, d)
@@ -31,7 +30,7 @@ def radixSort(nums):
     if nd > maxNumDigits:
       maxNumDigits = nd
   for d in range(maxNumDigits):
-    sortByDigit(nums, d)
+    sortByD(nums, d)
 
 nums = [1982, 3, 21354, 5468, 0]
 radixSort(nums)

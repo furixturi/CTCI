@@ -89,6 +89,14 @@ math.isinf(n_inf) # Also True
 math.isinf(n_inf) and n_inf < 0 # Right way to check negative inf
 ```
 
+# Custom sort comparator
+
+Use key lambda
+```python
+# put all anagrams next to each other in a string list
+stringList.sort(key=lambda s: ''.join(sorted(s)))
+```
+
 # Use min() max() on iterable
 
 min() returns the min value by default.

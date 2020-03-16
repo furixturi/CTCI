@@ -44,3 +44,25 @@ def bs(nums, t, l=0, r=None):
 
 print(searchRotatedArray([3,4,5,1,2],1))
 print(searchRotatedArray([3,4,5,1,2],6))
+
+def searchRotatedArrayWithDuplicates(nums, t, l=0, r=None):
+  r = len(nums) - 1 if r is None else r
+  if l <= r:
+    m = (l+r) // 2
+    if nums[m] == t: return m
+    if nums[l] < nums[m]: # left side sorted
+      if nums[m] > t:
+        return searchRotatedArrayWithDuplicates(nums, t, l, m-1)
+      else:
+        return searchRotatedArrayWithDuplicates(nums, t, m+1, r)
+    elif nums[l] > nums[m]: # right side sorted
+      if nums[m] < t:
+        return searchRotatedArrayWithDuplicates(nums, t, m+1, r)
+      else:
+        return searchRotatedArrayWithDuplicates(nums, t, l, m-1)
+    else: # left or right side are all duplicates
+      leftResult = searchRotatedArrayWithDuplicates(nums, t, l, m-1)
+      if leftResult != -1: return leftResult
+      rightResult = searchRotatedArrayWithDuplicates(nums, t, m+1, r)
+      return rightResult
+  return -1

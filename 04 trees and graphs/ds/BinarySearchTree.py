@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import List
 from Tree import Tree
+from collections import deque
 class BinarySearchTree(Tree):
   def __init__(self, data):
     self.data = data
@@ -96,6 +97,7 @@ class BinarySearchTree(Tree):
         else:
           next_bigger.parent.left_child = None
   # O(N)
+  # get's sorted values
   def dfs_in_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -107,6 +109,7 @@ class BinarySearchTree(Tree):
       BinarySearchTree.dfs_in_order(right_child, traverse_function)
   
   # O(N)
+  # can replicate a BST (if null leaves are identified)
   def dfs_pre_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -116,6 +119,7 @@ class BinarySearchTree(Tree):
       BinarySearchTree.dfs_pre_order(right_child, traverse_function)
   
   # O(N)
+  # can be used to delete a tree
   def dfs_post_order(self, traverse_function):
     if self != None:
       left_child = self.left_child
@@ -125,13 +129,15 @@ class BinarySearchTree(Tree):
       traverse_function(self)
 
   # O(N)
+  # it is not a recursive function
   def bfs(self, traverse_function):
-    queue: List = [self]
-    while len(queue) > 0:
-      n = queue.pop(0)
-      if n.left_child != None:
+    queue: deque = deque()
+    queue.append(self)
+    while queue:
+      n = queue.popleft()
+      if n.left_child is not None:
         queue.append(n.left_child)
-      if n.right_child != None:
+      if n.right_child is not None:
         queue.append(n.right_child)
       traverse_function(n)
 

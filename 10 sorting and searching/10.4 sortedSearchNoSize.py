@@ -30,8 +30,43 @@ def searchListy(nums, t, l = 0, r = None):
     return searchListy(nums, t, l, r)
   return -1
 
-print(searchListy([1,3,5], 0))
-print(searchListy([1,3,5], 1))
-print(searchListy([1,3,5], 2))
-print(searchListy([1,3,5], 5))
-print(searchListy([1,3,5], 6))
+# print(searchListy([1,3,5], 0))
+# print(searchListy([1,3,5], 1))
+# print(searchListy([1,3,5], 2))
+# print(searchListy([1,3,5], 5))
+# print(searchListy([1,3,5], 6))
+
+class Listy:
+  def __init__(self, li):
+    self._list = li
+
+  def __getitem__(self, idx):
+    if idx >= len(self._list):
+      return -1
+    return self._list[idx]
+
+# li = Listy([1,3,5])
+# print(li[-1])
+# print(li[0])
+# print(li[1])
+# print(li[2])
+# print(li[3])
+
+def searchListySolution(nums, t, l = 0, r = None):
+  if r is None:
+    r = 1
+    while nums[r] != -1 and nums[r] < t:
+      r = r * 2
+
+  if l > r: return -1
+  m = (l + r) // 2
+  if nums[m] == t: return m
+  if nums[m] == -1 or nums[m] > t:
+    return searchListySolution(nums, t, l, m-1)
+  return searchListySolution(nums, t, m+1, r)
+
+print(searchListySolution(Listy([1,3,5]), 0))
+print(searchListySolution(Listy([1,3,5]), 1))
+print(searchListySolution(Listy([1,3,5]), 2))
+print(searchListySolution(Listy([1,3,5]), 5))
+print(searchListySolution(Listy([1,3,5]), 6))

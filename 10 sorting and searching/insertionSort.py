@@ -1,4 +1,8 @@
 from typing import List
+# Time: 
+#   Best O(n) - already sorted
+#   Avg O(n^2)
+# Space: O(1)
 def insertionSort(nums: List[int]):
   n = len(nums)
   for i in range(1, n):

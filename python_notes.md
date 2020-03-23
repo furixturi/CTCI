@@ -234,3 +234,23 @@ grid[0][4] = False
 # [True, True, True, True, True],
 # [[True, True, True, True, True]]
 ```
+
+# Overload the list "[]" behavior
+Use composition and implement `__getitem__`
+
+```python
+class ListNoIndexError:
+  def __init__(self, li):
+    self._list = li
+  
+  def __getitem__(self, idx):
+    if idx >= len(self._list):
+      return -1
+    return self._list[idx]
+```
+
+# Generate integer from binary string
+
+```python
+num = int('1100', 2)
+```

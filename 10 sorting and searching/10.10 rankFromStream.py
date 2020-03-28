@@ -60,6 +60,8 @@ class BST:
     if self.right:
       BST.inOrder(self.right, list)
 
+# best case O(logN)
+# worst case O(N)
 def track(x):
   global nums
   if nums is None:
@@ -67,6 +69,7 @@ def track(x):
   else:
     nums.insert(x)
 
+# O(N)
 def getRankOfNumber(num):
   global nums
   sorted = []

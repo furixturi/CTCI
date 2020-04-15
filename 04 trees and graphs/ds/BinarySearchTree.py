@@ -80,7 +80,7 @@ class BinarySearchTree(Tree):
     else:
       if n.left_child == None and n.right_child == None:
         if n.data > n.parent.data:
-          n.parent.right_child = None
+          n.parent.right_child = None # What if n is the root?
         else:
           n.parent.left_child = None
       elif (n.left_child != None and n.right_child == None) or (n.left_child == None and n.right_child != None):
@@ -93,7 +93,7 @@ class BinarySearchTree(Tree):
         next_bigger = n.right_child.search_min()
         n.data = next_bigger.data
         if next_bigger.data > next_bigger.parent.data:
-          next_bigger.parent.right_child = None
+          next_bigger.parent.right_child = None # What about nextBigger's right child?
         else:
           next_bigger.parent.left_child = None
   # O(N)

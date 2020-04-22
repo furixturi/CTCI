@@ -27,7 +27,7 @@ class AVLTree:
       else:
         curr.right = self.insert(value, curr.right)
     else:
-      print(f'{value} already exists.')
+      print(f'{str(value)} already exists.')
     self.updateHeight(curr)
     curr = self.rebalance(curr)
     return curr

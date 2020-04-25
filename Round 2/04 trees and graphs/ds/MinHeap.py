@@ -2,6 +2,9 @@ class MinHeap:
     def __init__(self):
         self.items = []
 
+    # insert to next available slot
+    # bubble up until its parent is smaller than it
+    # or it reaches the root
     def insert(self, val):
         self.items.append(val)
         i = len(self.items) - 1
@@ -11,6 +14,9 @@ class MinHeap:
             i = parent
             parent = (i + 1) // 2 - 1
 
+    # take out the first (the smallest), put the last at its place
+    # bubble down the new head until it is smaller than both of its children, 
+    # or it becomes a leaf
     def extractMin(self):
         if not self.items:
             return None

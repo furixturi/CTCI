@@ -9,16 +9,24 @@ def quickSort(nums, l = 0, r = None):
     quickSort(nums, pIdx + 1, r)
 
 def partition(nums, l, r):
+  end = r
   pivot = nums[(l + r) // 2]
   while l < r:
-    while nums[l] < pivot:
+    while nums[l] < pivot and l < r:
       l += 1
-    while nums[r] > pivot:
+    while nums[r] >= pivot and l < r:
       r -= 1
-    if l == r:
-      return l
     nums[l], nums[r] = nums[r], nums[l]
+  if nums[l] >= nums[end]:
+    nums[l], nums[end] = nums[end], nums[l]
+  else:
+    l += 1
+  return l
+    
 
-nums = [5, 4, 1, 3, 2]
-quickSort(nums)
-print(nums)
+nums = [5, 2, 9, 1, 4]
+nums2 = [5, 3, 2, 1, 9, 2]
+# quickSort(nums)
+quickSort(nums2)
+# print(nums)
+print(nums2)

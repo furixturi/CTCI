@@ -1,3 +1,23 @@
+# string conversion and interpolation
+
+```python
+a = 42
+s = f'The secret is {a}'
+
+b = 3
+sb = str(3)
+```
+
+# char to char code
+
+```python
+c = 'c'
+c_code = ord(c)
+
+cn = 99
+cs = chr(cn) #'c'
+```
+
 # Add type hint for non-primitive built-in types
 
 ```python
@@ -249,7 +269,7 @@ class ListNoIndexError:
     return self._list[idx]
 ```
 
-# Generate integer from binary string
+# binary string to decimal integer
 
 ```python
 num = int('1100', 2)
